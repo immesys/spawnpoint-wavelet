@@ -21,7 +21,6 @@ WaveletWindow {
     Tab {
       title : "Overview"
       OverviewPage {
-        anchors.fill : parent
       }
 
     }
