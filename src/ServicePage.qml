@@ -6,6 +6,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.4
 import BOSSWAVE 1.0
+import WaveViewer 1.0
 
 Item {
   property var svcModel
@@ -74,12 +75,48 @@ Item {
       }
 
       Button {
+        id: restartButton
         text: "Restart Service"
+        backgroundColor: "#4CAF50"
+        width: dp(200)
         anchors.top: parent.top
         anchors.left: nameLabel.right
         anchors.margins: dp(16)
         anchors.leftMargin: dp(45)
         anchors.topMargin: dp(25)
+
+        onClicked: function() {
+          var restartUri = WV.appURI() + "/i.spawnpoint/slot/restart"
+          BW.publishText(restartUri, Name,
+            function(err) {
+              if (err != "") {
+                WV.fatal("could not publish restart command: ", err)
+              }
+            }
+          )
+        }
+      }
+
+      Button {
+        text: "Stop Service"
+        backgroundColor: "#F44336"
+        width: dp(200)
+        anchors.top: parent.top
+        anchors.left: restartButton.right
+        anchors.margins: dp(16)
+        anchors.leftMargin: dp(25)
+        anchors.topMargin: dp(25)
+
+        onClicked: function() {
+          var stopUri = WV.appURI() + "/i.spawnpoint/slot/stop"
+          BW.publishText(stopUri, Name,
+            function(err) {
+              if (err != "") {
+                WV.fatal("could not publish stop command: ", err)
+              }
+            }
+          )
+        }
       }
     }
   }

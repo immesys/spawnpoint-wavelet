@@ -33,12 +33,12 @@ ListModel {
       Object.keys(currentServices).forEach(function(name) {
         append(currentServices[name])
       });
-      console.log(count)
     }
   }
 
   Component.onCompleted: {
-    var hbUri = WV.appURI().slice(0, WV.appURI().length - "/server".length) + "+/i.spawnable/signal/heartbeat"
+    var hbUri = WV.appURI().slice(0, WV.appURI().length - "/server".length) +
+        "+/i.spawnable/signal/heartbeat"
     BW.subscribeMsgPack(hbUri,
       function(msg) {
         currentServices[msg["Name"]] = msg
