@@ -16,16 +16,15 @@ Item {
   property real sLastTime
   property int sTotalShares
   property int sTotalMem
+  property int sNumSvcs
 
   anchors.fill: parent
 
   Component.onCompleted : {
     console.log(x, y, width, height)
     console.log("appuri: ", WV.appURI());
-    BW.subscribeMsgPack(WV.appURI()+"i.spawnpoint/signal/heartbeat",
-      function(msg)
-      {
-        console.log(x, y, width, height)
+    BW.subscribeMsgPack(WV.appURI() + "i.spawnpoint/signal/heartbeat",
+      function(msg) {
         sAlias = msg["Alias"];
         sAvailableShares = msg["AvailableCpuShares"];
         sAvailableMem = msg["AvailableMem"];
@@ -34,14 +33,13 @@ Item {
         sTotalMem = msg["TotalMem"];
         console.log("updated properties");
       },
-      function(err)
-      {
-        if (err != "")
-        {
-          WV.fatal("could not subscribe: ",err);
+      function(err) {
+        if (err != "") {
+          WV.fatal("could not subscribe: ", err);
         }
       });
   }
+
   VisualItemModel {
     id: amodel
     View {
@@ -70,6 +68,7 @@ Item {
           }
       }
     }
+
     View {
       elevation: 1
       width: dp(300)
@@ -85,9 +84,10 @@ Item {
               margins: dp(16)
           }
       }
+
       Label {
           font.family: "Roboto"
-          text: sAvailableShares +" / " + sTotalShares
+          text: sAvailableShares + " / " + sTotalShares
           font.pixelSize: dp(34)
           anchors {
               left: parent.left
@@ -96,10 +96,12 @@ Item {
           }
       }
     }
+
     View {
       elevation: 1
       width: dp(300)
       height: dp(150)
+
       Label {
           font.family: "Roboto"
           font.weight: Font.Light
@@ -111,6 +113,7 @@ Item {
               margins: dp(16)
           }
       }
+
       Label {
           font.family: "Roboto"
           text: sAvailableMem + " / " + sTotalMem
@@ -122,10 +125,41 @@ Item {
           }
       }
     }
+
+    View {
+      elevation: 1
+      width: dp(300)
+      height: dp(150)
+
+      Label {
+          font.family: "Roboto"
+          font.weight: Font.Light
+          text: "Num. Services"
+          font.pixelSize: dp(24)
+          anchors {
+              left: parent.left
+              top: parent.top
+              margins: dp(16)
+          }
+      }
+
+      Label {
+          font.family: "Roboto"
+          text: sNumSvcs
+          font.pixelSize: dp(34)
+          anchors {
+              left: parent.left
+              bottom: parent.bottom
+              margins: dp(16)
+          }
+      }
+    }
+
   }
+
   GridView {
-    anchors.fill : parent
-    model:amodel
+    anchors.fill: parent
+    model: amodel
     //width:main.width
     //height:main.height
     anchors.margins: dp(36)
