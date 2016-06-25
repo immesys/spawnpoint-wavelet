@@ -86,11 +86,11 @@ Item {
         anchors.topMargin: dp(25)
 
         onClicked: function() {
-          var restartUri = WV.appURI() + "/i.spawnpoint/slot/restart"
+          var restartUri = WV.appURI() + "i.spawnpoint/slot/restart"
           BW.publishText(restartUri, Name,
             function(err) {
               if (err != "") {
-                WV.fatal("could not publish restart command: ", err)
+                WV.fatal("could not publish restart command: " + err)
               }
             }
           )
@@ -108,11 +108,11 @@ Item {
         anchors.topMargin: dp(25)
 
         onClicked: function() {
-          var stopUri = WV.appURI() + "/i.spawnpoint/slot/stop"
+          var stopUri = WV.appURI() + "i.spawnpoint/slot/stop"
           BW.publishText(stopUri, Name,
             function(err) {
               if (err != "") {
-                WV.fatal("could not publish stop command: ", err)
+                WV.fatal("could not publish stop command: " + err)
               }
             }
           )
