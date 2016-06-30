@@ -87,7 +87,7 @@ Item {
 
         onClicked: function() {
           var restartUri = WV.appURI() + "i.spawnpoint/slot/restart"
-          BW.publishText(restartUri, Name,
+          BW.publishText(restartUri, 1073742080, Name,
             function(err) {
               if (err != "") {
                 WV.fatal("could not publish restart command: " + err)
@@ -109,7 +109,7 @@ Item {
 
         onClicked: function() {
           var stopUri = WV.appURI() + "i.spawnpoint/slot/stop"
-          BW.publishText(stopUri, Name,
+          BW.publishText(stopUri, 1073742080, Name,
             function(err) {
               if (err != "") {
                 WV.fatal("could not publish stop command: " + err)
