@@ -23,13 +23,14 @@ Item {
   Component.onCompleted : {
     console.log(x, y, width, height)
     console.log("appuri: ", WV.appURI());
-    BW.subscribeMsgPack(WV.appURI() + "i.spawnpoint/signal/heartbeat",
-      function(msg) {
+    BW.subscribeMsgPack({"URI": WV.appURI() + "i.spawnpoint/signal/heartbeat", "AutoChain": true},
+      function(poNum, msg) {
+        console.log(Object.keys(msg))
         sAlias = msg["Alias"];
-        sAvailableShares = msg["AvailableCpuShares"];
+        sAvailableShares = msg["AvailableCPUShares"];
         sAvailableMem = msg["AvailableMem"];
         sLastTime = msg["Time"];
-        sTotalShares = msg["TotalCpuShares"];
+        sTotalShares = msg["TotalCPUShares"];
         sTotalMem = msg["TotalMem"];
         console.log("updated properties");
       },
@@ -160,11 +161,7 @@ Item {
   GridView {
     anchors.fill: parent
     model: amodel
-    //width:main.width
-    //height:main.height
     anchors.margins: dp(36)
-    //columnSpacing: dp(16)
-    //rowSpacing: dp(16)
     cellWidth: dp(320)
     cellHeight: dp(170)
 

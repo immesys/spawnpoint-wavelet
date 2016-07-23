@@ -87,7 +87,7 @@ Item {
 
         onClicked: function() {
           var restartUri = WV.appURI() + "i.spawnpoint/slot/restart"
-          BW.publishText(restartUri, 1073742080, Name,
+          BW.publishText({"URI": restartUri, "AutoChain": true, "PONum": 1073742080, "Payload": Name},
             function(err) {
               if (err != "") {
                 WV.fatal("could not publish restart command: " + err)
@@ -109,7 +109,7 @@ Item {
 
         onClicked: function() {
           var stopUri = WV.appURI() + "i.spawnpoint/slot/stop"
-          BW.publishText(stopUri, 1073742080, Name,
+          BW.publishText({"URI": stopUri, "AutoChain": true, "PONum": 1073742080, "Payload": Name},
             function(err) {
               if (err != "") {
                 WV.fatal("could not publish stop command: " + err)
