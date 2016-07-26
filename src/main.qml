@@ -36,5 +36,13 @@ WaveletWindow {
         svcModel: serviceListModel
       }
     }
+
+    Tab {
+      title: "Deploy"
+
+      DeployPage {
+        anchors.fill: parent
+      }
+    }
   }
 }

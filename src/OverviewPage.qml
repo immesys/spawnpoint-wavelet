@@ -21,18 +21,14 @@ Item {
   anchors.fill: parent
 
   Component.onCompleted : {
-    console.log(x, y, width, height)
-    console.log("appuri: ", WV.appURI());
     BW.subscribeMsgPack({"URI": WV.appURI() + "i.spawnpoint/signal/heartbeat", "AutoChain": true},
       function(poNum, msg) {
-        console.log(Object.keys(msg))
         sAlias = msg["Alias"];
         sAvailableShares = msg["AvailableCPUShares"];
         sAvailableMem = msg["AvailableMem"];
         sLastTime = msg["Time"];
         sTotalShares = msg["TotalCPUShares"];
         sTotalMem = msg["TotalMem"];
-        console.log("updated properties");
       },
       function(err) {
         if (err != "") {
