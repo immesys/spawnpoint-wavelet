@@ -30,7 +30,7 @@ Item {
         sTotalShares = msg["TotalCPUShares"];
         sTotalMem = msg["TotalMem"];
       },
-      function(err) {
+      function(err, handle) {
         if (err != "") {
           WV.fatal("could not subscribe: ", err);
         }

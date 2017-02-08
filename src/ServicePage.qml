@@ -46,7 +46,7 @@ Item {
         id: cpuLabel
         font.family: "Roboto"
         font.pixelSize: dp(27)
-        text: "CPU: " + CpuShares + " Shares"
+        text: "CPU: ~" + (CPUPercent*1024.0).toFixed(0) + "/" + CPUShares + " Shares"
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.margins: dp(16)
@@ -56,7 +56,7 @@ Item {
         id: memLabel
         font.family: "Roboto"
         font.pixelSize: dp(27)
-        text: "Memory: " + MemAlloc + " MB"
+        text: "Memory: " + MemUsage.toFixed(2) + "/" + MemAlloc + " MB"
         anchors.top: cpuLabel.bottom
         anchors.right: parent.right
         anchors.margins: dp(16)
@@ -80,9 +80,9 @@ Item {
         backgroundColor: "#4CAF50"
         width: dp(200)
         anchors.top: parent.top
-        anchors.left: nameLabel.right
+        anchors.left: parent.left
         anchors.margins: dp(16)
-        anchors.leftMargin: dp(45)
+        anchors.leftMargin: dp(220)
         anchors.topMargin: dp(25)
 
         onClicked: function() {

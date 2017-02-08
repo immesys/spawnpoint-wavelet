@@ -37,13 +37,12 @@ ListModel {
   }
 
   Component.onCompleted: {
-    var hbUri = WV.appURI().slice(0, WV.appURI().length - "/server".length) +
-        "+/i.spawnable/signal/heartbeat"
+    var hbUri = WV.appURI() + "i.spawnpoint/signal/heartbeat/+"
     BW.subscribeMsgPack({"URI": hbUri, "AutoChain": true},
       function(poNum, msg) {
         currentServices[msg["Name"]] = msg
       },
-      function(err) {
+      function(err, handle) {
         if (err != "") {
           WV.fatal("could not subscribe: ", err)
         }
