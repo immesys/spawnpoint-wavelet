@@ -76,13 +76,13 @@ Item {
 
       Button {
         id: restartButton
-        text: "Restart Service"
+        text: "Restart"
         backgroundColor: "#4CAF50"
-        width: dp(200)
+        width: dp(100)
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: dp(16)
-        anchors.leftMargin: dp(220)
+        anchors.leftMargin: dp(375)
         anchors.topMargin: dp(25)
 
         onClicked: function() {
@@ -98,9 +98,9 @@ Item {
       }
 
       Button {
-        text: "Stop Service"
+        text: "Stop"
         backgroundColor: "#F44336"
-        width: dp(200)
+        width: dp(100)
         anchors.top: parent.top
         anchors.left: restartButton.right
         anchors.margins: dp(16)
